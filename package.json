@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "codegen": "(cd ./package && npm run codegen) && (cd ./example/ios && pod install) && (cd ./example/android && ./gradlew clean && ./gradlew build)"
+  }
+}

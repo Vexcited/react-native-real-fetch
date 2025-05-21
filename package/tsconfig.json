@@ -1,0 +1,10 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "lib": ["es2020", "dom", "DOM.AsyncIterable"],
+    "types": ["react-native"]
+  }
+}
