@@ -10,10 +10,15 @@
 #include <fbjni/fbjni.h>
 #include "NativeRequest.hpp"
 
+#include "HybridInputStreamSpec.hpp"
+#include "JHybridInputStreamSpec.hpp"
 #include "JRequestMethods.hpp"
 #include "JRequestRedirection.hpp"
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"
+#include <NitroModules/JNISharedPtr.hpp>
+#include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -44,6 +49,8 @@ namespace margelo::nitro::realfetch {
       jni::local_ref<JRequestRedirection> redirection = this->getFieldValue(fieldRedirection);
       static const auto fieldHeaders = clazz->getField<jni::JArrayClass<jni::JString>>("headers");
       jni::local_ref<jni::JArrayClass<jni::JString>> headers = this->getFieldValue(fieldHeaders);
+      static const auto fieldBody = clazz->getField<JHybridInputStreamSpec::javaobject>("body");
+      jni::local_ref<JHybridInputStreamSpec::javaobject> body = this->getFieldValue(fieldBody);
       return NativeRequest(
         url->toStdString(),
         method->toCpp(),
@@ -57,7 +64,8 @@ namespace margelo::nitro::realfetch {
             __vector.push_back(__element->toStdString());
           }
           return __vector;
-        }()
+        }(),
+        body != nullptr ? std::make_optional(JNISharedPtr::make_shared_from_jni<JHybridInputStreamSpec>(jni::make_global(body))) : std::nullopt
       );
     }
 
@@ -79,7 +87,8 @@ namespace margelo::nitro::realfetch {
             __array->setElement(__i, *jni::make_jstring(__element));
           }
           return __array;
-        }()
+        }(),
+        value.body.has_value() ? std::dynamic_pointer_cast<JHybridInputStreamSpec>(value.body.value())->getJavaPart() : nullptr
       );
     }
   };

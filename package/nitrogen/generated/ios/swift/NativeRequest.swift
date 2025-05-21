@@ -18,13 +18,22 @@ public extension NativeRequest {
   /**
    * Create a new instance of `NativeRequest`.
    */
-  init(url: String, method: RequestMethods, redirection: RequestRedirection, headers: [String]) {
+  init(url: String, method: RequestMethods, redirection: RequestRedirection, headers: [String], body: (any HybridInputStreamSpec)?) {
     self.init(std.string(url), method, redirection, { () -> bridge.std__vector_std__string_ in
       var __vector = bridge.create_std__vector_std__string_(headers.count)
       for __item in headers {
         __vector.push_back(std.string(__item))
       }
       return __vector
+    }(), { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__ in
+      if let __unwrappedValue = body {
+        return bridge.create_std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ in
+          let __cxxWrapped = __unwrappedValue.getCxxWrapper()
+          return __cxxWrapped.getCxxPart()
+        }())
+      } else {
+        return .init()
+      }
     }())
   }
 
@@ -74,6 +83,36 @@ public extension NativeRequest {
           __vector.push_back(std.string(__item))
         }
         return __vector
+      }()
+    }
+  }
+  
+  var body: (any HybridInputStreamSpec)? {
+    @inline(__always)
+    get {
+      return { () -> (any HybridInputStreamSpec)? in
+        if let __unwrapped = self.__body.value {
+          return { () -> HybridInputStreamSpec in
+            let __unsafePointer = bridge.get_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(__unwrapped)
+            let __instance = HybridInputStreamSpec_cxx.fromUnsafe(__unsafePointer)
+            return __instance.getHybridInputStreamSpec()
+          }()
+        } else {
+          return nil
+        }
+      }()
+    }
+    @inline(__always)
+    set {
+      self.__body = { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__ in
+        if let __unwrappedValue = newValue {
+          return bridge.create_std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ in
+            let __cxxWrapped = __unwrappedValue.getCxxWrapper()
+            return __cxxWrapped.getCxxPart()
+          }())
+        } else {
+          return .init()
+        }
       }()
     }
   }

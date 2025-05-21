@@ -8,8 +8,16 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `ArrayBuffer` to properly resolve imports.
+namespace NitroModules { class ArrayBuffer; }
+// Forward declaration of `HybridDuplexStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridDuplexStreamSpec; }
 // Forward declaration of `HybridFetchSpec` to properly resolve imports.
 namespace margelo::nitro::realfetch { class HybridFetchSpec; }
+// Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
+// Forward declaration of `HybridOutputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridOutputStreamSpec; }
 // Forward declaration of `NativeRequest` to properly resolve imports.
 namespace margelo::nitro::realfetch { struct NativeRequest; }
 // Forward declaration of `NativeResponse` to properly resolve imports.
@@ -20,15 +28,20 @@ namespace margelo::nitro::realfetch { enum class RequestMethods; }
 namespace margelo::nitro::realfetch { enum class RequestRedirection; }
 
 // Include C++ defined types
+#include "HybridDuplexStreamSpec.hpp"
 #include "HybridFetchSpec.hpp"
+#include "HybridInputStreamSpec.hpp"
+#include "HybridOutputStreamSpec.hpp"
 #include "NativeRequest.hpp"
 #include "NativeResponse.hpp"
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -41,8 +54,14 @@ namespace margelo::nitro::realfetch { enum class RequestRedirection; }
 #include <NitroModules/RuntimeError.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridDuplexStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridDuplexStreamSpec_cxx; }
 // Forward declaration of `HybridFetchSpec_cxx` to properly resolve imports.
 namespace NitroRealFetch { class HybridFetchSpec_cxx; }
+// Forward declaration of `HybridInputStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridInputStreamSpec_cxx; }
+// Forward declaration of `HybridOutputStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridOutputStreamSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("NitroRealFetch-Swift.h")

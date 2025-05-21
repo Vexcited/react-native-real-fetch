@@ -8,18 +8,27 @@ import {
 } from 'react-native';
 
 function App() {
-  const [url, setUrl] = useState("https://ec4f-46-193-4-24.ngrok-free.app");
+  const [url, setUrl] = useState("http://localhost:6000");
   const [followRedirects, setFollowRedirects] = useState(true);
 
   const handleFetch = async () => {
-    const response = await fetch(url, {
-      redirect: followRedirects ? "follow" : "manual",
-      headers: {
-        hello: "world"
-      }
-    });
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        redirect: followRedirects ? "follow" : "manual",
+        headers: { hello: "world" }
+      });
 
-    console.log(response);
+      console.log(response.status, response.statusText)
+      console.log(response.redirected, response.url)
+      console.log(response.headers);
+
+      const body = await response.text();
+      console.log({ body });
+    }
+    catch (error) {
+      console.error(error);
+    }
   };
 
   return (

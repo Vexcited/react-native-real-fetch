@@ -28,8 +28,14 @@ target_sources(
   ../nitrogen/generated/android/NitroRealFetchOnLoad.cpp
   # Shared Nitrogen C++ sources
   ../nitrogen/generated/shared/c++/HybridFetchSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridInputStreamSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOutputStreamSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDuplexStreamSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridFetchSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridInputStreamSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOutputStreamSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDuplexStreamSpec.cpp
 )
 
 # Define a flag to check if we are building properly

@@ -16,6 +16,9 @@
 #include <NitroModules/HybridObjectRegistry.hpp>
 
 #include "JHybridFetchSpec.hpp"
+#include "JHybridInputStreamSpec.hpp"
+#include "JHybridOutputStreamSpec.hpp"
+#include "JHybridDuplexStreamSpec.hpp"
 #include <NitroModules/JNISharedPtr.hpp>
 #include <NitroModules/DefaultConstructableObject.hpp>
 
@@ -29,6 +32,9 @@ int initialize(JavaVM* vm) {
   return facebook::jni::initialize(vm, [] {
     // Register native JNI methods
     margelo::nitro::realfetch::JHybridFetchSpec::registerNatives();
+    margelo::nitro::realfetch::JHybridInputStreamSpec::registerNatives();
+    margelo::nitro::realfetch::JHybridOutputStreamSpec::registerNatives();
+    margelo::nitro::realfetch::JHybridDuplexStreamSpec::registerNatives();
 
     // Register Nitro Hybrid Objects
     HybridObjectRegistry::registerHybridObjectConstructor(
@@ -38,6 +44,15 @@ int initialize(JavaVM* vm) {
         auto instance = object.create();
         auto globalRef = jni::make_global(instance);
         return JNISharedPtr::make_shared_from_jni<JHybridFetchSpec>(globalRef);
+      }
+    );
+    HybridObjectRegistry::registerHybridObjectConstructor(
+      "DuplexStream",
+      []() -> std::shared_ptr<HybridObject> {
+        static DefaultConstructableObject<JHybridDuplexStreamSpec::javaobject> object("com/margelo/nitro/realfetch/HybridDuplexStream");
+        auto instance = object.create();
+        auto globalRef = jni::make_global(instance);
+        return JNISharedPtr::make_shared_from_jni<JHybridDuplexStreamSpec>(globalRef);
       }
     );
   });

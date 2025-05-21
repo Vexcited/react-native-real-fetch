@@ -23,7 +23,8 @@ data class NativeRequest
     val url: String,
     val method: RequestMethods,
     val redirection: RequestRedirection,
-    val headers: Array<String>
+    val headers: Array<String>,
+    val body: HybridInputStreamSpec?
   ) {
   /* main constructor */
 }

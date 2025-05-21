@@ -14,6 +14,8 @@ namespace NitroRealFetch { class HybridFetchSpec_cxx; }
 
 // Forward declaration of `NativeResponse` to properly resolve imports.
 namespace margelo::nitro::realfetch { struct NativeResponse; }
+// Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
 // Forward declaration of `NativeRequest` to properly resolve imports.
 namespace margelo::nitro::realfetch { struct NativeRequest; }
 // Forward declaration of `RequestMethods` to properly resolve imports.
@@ -23,8 +25,11 @@ namespace margelo::nitro::realfetch { enum class RequestRedirection; }
 
 #include <NitroModules/Promise.hpp>
 #include "NativeResponse.hpp"
-#include <vector>
 #include <string>
+#include <vector>
+#include <optional>
+#include <memory>
+#include "HybridInputStreamSpec.hpp"
 #include "NativeRequest.hpp"
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"

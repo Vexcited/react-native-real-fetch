@@ -11,6 +11,7 @@
 #import <type_traits>
 
 #include "HybridFetchSpecSwift.hpp"
+#include "HybridDuplexStreamSpecSwift.hpp"
 
 @interface NitroRealFetchAutolinking : NSObject
 @end
@@ -25,6 +26,13 @@
     "Fetch",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<margelo::nitro::realfetch::HybridFetchSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createFetch();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "DuplexStream",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createDuplexStream();
       return hybridObject;
     }
   );

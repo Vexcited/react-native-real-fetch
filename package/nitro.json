@@ -16,6 +16,10 @@
     "Fetch": {
       "swift": "HybridFetch",
       "kotlin": "HybridFetch"
+    },
+    "DuplexStream": {
+      "swift": "HybridDuplexStream",
+      "kotlin": "HybridDuplexStream"
     }
   },
   "ignorePaths": [

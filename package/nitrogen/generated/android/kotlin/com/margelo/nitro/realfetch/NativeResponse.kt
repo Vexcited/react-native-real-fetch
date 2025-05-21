@@ -20,8 +20,12 @@ data class NativeResponse
   @DoNotStrip
   @Keep
   constructor(
+    val url: String,
     val status: Double,
-    val headers: Array<String>
+    val statusText: String,
+    val headers: Array<String>,
+    val body: HybridInputStreamSpec?,
+    val redirected: Boolean
   ) {
   /* main constructor */
 }

@@ -8,24 +8,46 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `ArrayBufferHolder` to properly resolve imports.
+namespace NitroModules { class ArrayBufferHolder; }
+// Forward declaration of `ArrayBuffer` to properly resolve imports.
+namespace NitroModules { class ArrayBuffer; }
+// Forward declaration of `HybridDuplexStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridDuplexStreamSpec; }
 // Forward declaration of `HybridFetchSpec` to properly resolve imports.
 namespace margelo::nitro::realfetch { class HybridFetchSpec; }
+// Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
+// Forward declaration of `HybridOutputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridOutputStreamSpec; }
 // Forward declaration of `NativeResponse` to properly resolve imports.
 namespace margelo::nitro::realfetch { struct NativeResponse; }
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridDuplexStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridDuplexStreamSpec_cxx; }
 // Forward declaration of `HybridFetchSpec_cxx` to properly resolve imports.
 namespace NitroRealFetch { class HybridFetchSpec_cxx; }
+// Forward declaration of `HybridInputStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridInputStreamSpec_cxx; }
+// Forward declaration of `HybridOutputStreamSpec_cxx` to properly resolve imports.
+namespace NitroRealFetch { class HybridOutputStreamSpec_cxx; }
 
 // Include C++ defined types
+#include "HybridDuplexStreamSpec.hpp"
 #include "HybridFetchSpec.hpp"
+#include "HybridInputStreamSpec.hpp"
+#include "HybridOutputStreamSpec.hpp"
 #include "NativeResponse.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/ArrayBufferHolder.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/PromiseHolder.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
 #include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -44,6 +66,27 @@ namespace margelo::nitro::realfetch::bridge::swift {
     std::vector<std::string> vector;
     vector.reserve(size);
     return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>
+  /**
+   * Specialized version of `std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>`.
+   */
+  using std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ = std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>;
+  std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(void* _Nonnull swiftUnsafePointer);
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>
+  using std__weak_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ = std::weak_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>;
+  inline std__weak_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ weakify_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& strong) { return strong; }
+  
+  // pragma MARK: std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>`.
+   */
+  using std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__ = std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>;
+  inline std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> create_std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& value) {
+    return std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>(value);
   }
   
   // pragma MARK: std::shared_ptr<Promise<NativeResponse>>
@@ -122,5 +165,124 @@ namespace margelo::nitro::realfetch::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativeResponse___ create_Result_std__shared_ptr_Promise_NativeResponse___(const std::exception_ptr& error) {
     return Result<std::shared_ptr<Promise<NativeResponse>>>::withError(error);
   }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>`.
+   */
+  using std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___ = std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>;
+  inline std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> create_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___() {
+    return Promise<std::shared_ptr<ArrayBuffer>>::create();
+  }
+  inline PromiseHolder<std::shared_ptr<ArrayBuffer>> wrap_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___(std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> promise) {
+    return PromiseHolder<std::shared_ptr<ArrayBuffer>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::shared_ptr<ArrayBuffer>&)>`.
+   */
+  using Func_void_std__shared_ptr_ArrayBuffer_ = std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::shared_ptr<ArrayBuffer>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__shared_ptr_ArrayBuffer__Wrapper final {
+  public:
+    explicit Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>&& func): _function(std::make_shared<std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>>(std::move(func))) {}
+    inline void call(ArrayBufferHolder result) const {
+      _function->operator()(result.getArrayBuffer());
+    }
+  private:
+    std::shared_ptr<std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>> _function;
+  };
+  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_std__shared_ptr_ArrayBuffer__Wrapper wrap_Func_void_std__shared_ptr_ArrayBuffer_(Func_void_std__shared_ptr_ArrayBuffer_ value) {
+    return Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>
+  using Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ = Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>;
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>& value) {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<void>
+  using Result_void_ = Result<void>;
+  inline Result_void_ create_Result_void_() {
+    return Result<void>::withValue();
+  }
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) {
+    return Result<void>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<void>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<void>>`.
+   */
+  using std__shared_ptr_Promise_void__ = std::shared_ptr<Promise<void>>;
+  inline std::shared_ptr<Promise<void>> create_std__shared_ptr_Promise_void__() {
+    return Promise<void>::create();
+  }
+  inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) {
+    return PromiseHolder<void>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void()>
+  /**
+   * Specialized version of `std::function<void()>`.
+   */
+  using Func_void = std::function<void()>;
+  /**
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   */
+  class Func_void_Wrapper final {
+  public:
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_shared<std::function<void()>>(std::move(func))) {}
+    inline void call() const {
+      _function->operator()();
+    }
+  private:
+    std::shared_ptr<std::function<void()>> _function;
+  };
+  Func_void create_Func_void(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) {
+    return Func_void_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>
+  /**
+   * Specialized version of `std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>`.
+   */
+  using std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ = std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>;
+  std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(void* _Nonnull swiftUnsafePointer);
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>
+  using std__weak_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ = std::weak_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>;
+  inline std__weak_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ weakify_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(const std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>& strong) { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
+  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) {
+    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<void>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>
+  /**
+   * Specialized version of `std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>`.
+   */
+  using std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ = std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>;
+  std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(void* _Nonnull swiftUnsafePointer);
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>
+  using std__weak_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ = std::weak_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>;
+  inline std__weak_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ weakify_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(const std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>& strong) { return strong; }
 
 } // namespace margelo::nitro::realfetch::bridge::swift

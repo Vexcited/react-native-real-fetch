@@ -8,11 +8,30 @@
 #include "NitroRealFetch-Swift-Cxx-Bridge.hpp"
 
 // Include C++ implementation defined types
+#include "HybridDuplexStreamSpecSwift.hpp"
 #include "HybridFetchSpecSwift.hpp"
+#include "HybridInputStreamSpecSwift.hpp"
+#include "HybridOutputStreamSpecSwift.hpp"
 #include "NitroRealFetch-Swift-Cxx-Umbrella.hpp"
 
 namespace margelo::nitro::realfetch::bridge::swift {
 
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>
+  std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(void* _Nonnull swiftUnsafePointer) {
+    NitroRealFetch::HybridInputStreamSpec_cxx swiftPart = NitroRealFetch::HybridInputStreamSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::realfetch::HybridInputStreamSpecSwift>(swiftPart);
+  }
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::realfetch::HybridInputStreamSpecSwift>(cppType);
+  #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridInputStreamSpec\" is not implemented in Swift!");
+    }
+  #endif
+    NitroRealFetch::HybridInputStreamSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::function<void(const NativeResponse& /* result */)>
   Func_void_NativeResponse create_Func_void_NativeResponse(void* _Nonnull swiftClosureWrapper) {
     auto swiftClosure = NitroRealFetch::Func_void_NativeResponse::fromUnsafe(swiftClosureWrapper);
@@ -42,6 +61,54 @@ namespace margelo::nitro::realfetch::bridge::swift {
     }
   #endif
     NitroRealFetch::HybridFetchSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* result */)>
+  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroRealFetch::Func_void_std__shared_ptr_ArrayBuffer_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::shared_ptr<ArrayBuffer>& result) mutable -> void {
+      swiftClosure.call(ArrayBufferHolder(result));
+    };
+  }
+  
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroRealFetch::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>
+  std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(void* _Nonnull swiftUnsafePointer) {
+    NitroRealFetch::HybridOutputStreamSpec_cxx swiftPart = NitroRealFetch::HybridOutputStreamSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::realfetch::HybridOutputStreamSpecSwift>(swiftPart);
+  }
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::realfetch::HybridOutputStreamSpecSwift>(cppType);
+  #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOutputStreamSpec\" is not implemented in Swift!");
+    }
+  #endif
+    NitroRealFetch::HybridOutputStreamSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>
+  std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec> create_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(void* _Nonnull swiftUnsafePointer) {
+    NitroRealFetch::HybridDuplexStreamSpec_cxx swiftPart = NitroRealFetch::HybridDuplexStreamSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::realfetch::HybridDuplexStreamSpecSwift>(swiftPart);
+  }
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::realfetch::HybridDuplexStreamSpecSwift>(cppType);
+  #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridDuplexStreamSpec\" is not implemented in Swift!");
+    }
+  #endif
+    NitroRealFetch::HybridDuplexStreamSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

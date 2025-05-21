@@ -10,6 +10,11 @@
 #include <fbjni/fbjni.h>
 #include "NativeResponse.hpp"
 
+#include "HybridInputStreamSpec.hpp"
+#include "JHybridInputStreamSpec.hpp"
+#include <NitroModules/JNISharedPtr.hpp>
+#include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -32,12 +37,22 @@ namespace margelo::nitro::realfetch {
     [[nodiscard]]
     NativeResponse toCpp() const {
       static const auto clazz = javaClassStatic();
+      static const auto fieldUrl = clazz->getField<jni::JString>("url");
+      jni::local_ref<jni::JString> url = this->getFieldValue(fieldUrl);
       static const auto fieldStatus = clazz->getField<double>("status");
       double status = this->getFieldValue(fieldStatus);
+      static const auto fieldStatusText = clazz->getField<jni::JString>("statusText");
+      jni::local_ref<jni::JString> statusText = this->getFieldValue(fieldStatusText);
       static const auto fieldHeaders = clazz->getField<jni::JArrayClass<jni::JString>>("headers");
       jni::local_ref<jni::JArrayClass<jni::JString>> headers = this->getFieldValue(fieldHeaders);
+      static const auto fieldBody = clazz->getField<JHybridInputStreamSpec::javaobject>("body");
+      jni::local_ref<JHybridInputStreamSpec::javaobject> body = this->getFieldValue(fieldBody);
+      static const auto fieldRedirected = clazz->getField<jboolean>("redirected");
+      jboolean redirected = this->getFieldValue(fieldRedirected);
       return NativeResponse(
+        url->toStdString(),
         status,
+        statusText->toStdString(),
         [&]() {
           size_t __size = headers->size();
           std::vector<std::string> __vector;
@@ -47,7 +62,9 @@ namespace margelo::nitro::realfetch {
             __vector.push_back(__element->toStdString());
           }
           return __vector;
-        }()
+        }(),
+        body != nullptr ? std::make_optional(JNISharedPtr::make_shared_from_jni<JHybridInputStreamSpec>(jni::make_global(body))) : std::nullopt,
+        static_cast<bool>(redirected)
       );
     }
 
@@ -58,7 +75,9 @@ namespace margelo::nitro::realfetch {
     [[maybe_unused]]
     static jni::local_ref<JNativeResponse::javaobject> fromCpp(const NativeResponse& value) {
       return newInstance(
+        jni::make_jstring(value.url),
         value.status,
+        jni::make_jstring(value.statusText),
         [&]() {
           size_t __size = value.headers.size();
           jni::local_ref<jni::JArrayClass<jni::JString>> __array = jni::JArrayClass<jni::JString>::newArray(__size);
@@ -67,7 +86,9 @@ namespace margelo::nitro::realfetch {
             __array->setElement(__i, *jni::make_jstring(__element));
           }
           return __array;
-        }()
+        }(),
+        value.body.has_value() ? std::dynamic_pointer_cast<JHybridInputStreamSpec>(value.body.value())->getJavaPart() : nullptr,
+        value.redirected
       );
     }
   };

@@ -18,10 +18,14 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
+namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
 
-
-#include <vector>
 #include <string>
+#include <vector>
+#include <optional>
+#include <memory>
+#include "HybridInputStreamSpec.hpp"
 
 namespace margelo::nitro::realfetch {
 
@@ -30,12 +34,16 @@ namespace margelo::nitro::realfetch {
    */
   struct NativeResponse {
   public:
+    std::string url     SWIFT_PRIVATE;
     double status     SWIFT_PRIVATE;
+    std::string statusText     SWIFT_PRIVATE;
     std::vector<std::string> headers     SWIFT_PRIVATE;
+    std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body     SWIFT_PRIVATE;
+    bool redirected     SWIFT_PRIVATE;
 
   public:
     NativeResponse() = default;
-    explicit NativeResponse(double status, std::vector<std::string> headers): status(status), headers(headers) {}
+    explicit NativeResponse(std::string url, double status, std::string statusText, std::vector<std::string> headers, std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body, bool redirected): url(url), status(status), statusText(statusText), headers(headers), body(body), redirected(redirected) {}
   };
 
 } // namespace margelo::nitro::realfetch
@@ -50,14 +58,22 @@ namespace margelo::nitro {
     static inline NativeResponse fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return NativeResponse(
+        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "url")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "status")),
-        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "headers"))
+        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "statusText")),
+        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "headers")),
+        JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::fromJSI(runtime, obj.getProperty(runtime, "body")),
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "redirected"))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const NativeResponse& arg) {
       jsi::Object obj(runtime);
+      obj.setProperty(runtime, "url", JSIConverter<std::string>::toJSI(runtime, arg.url));
       obj.setProperty(runtime, "status", JSIConverter<double>::toJSI(runtime, arg.status));
+      obj.setProperty(runtime, "statusText", JSIConverter<std::string>::toJSI(runtime, arg.statusText));
       obj.setProperty(runtime, "headers", JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.headers));
+      obj.setProperty(runtime, "body", JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::toJSI(runtime, arg.body));
+      obj.setProperty(runtime, "redirected", JSIConverter<bool>::toJSI(runtime, arg.redirected));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -65,8 +81,12 @@ namespace margelo::nitro {
         return false;
       }
       jsi::Object obj = value.getObject(runtime);
+      if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "url"))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "status"))) return false;
+      if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "statusText"))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, "headers"))) return false;
+      if (!JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::canConvert(runtime, obj.getProperty(runtime, "body"))) return false;
+      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, "redirected"))) return false;
       return true;
     }
   };
