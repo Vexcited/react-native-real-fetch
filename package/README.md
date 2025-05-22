@@ -1,6 +1,6 @@
 # react-native-real-fetch
 
-A not-so-perfect Fetch API implementation that’s good enough to do what React Native’s `fetch` can’t.
+A not-so-perfect [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) implementation that’s good enough to do what React Native’s `fetch` can’t.
 
 ## What does this do better ?
 
@@ -9,7 +9,9 @@ A not-so-perfect Fetch API implementation that’s good enough to do what React 
 
 ## Limitations
 
-Basically, whatever you can do with fetch should be possible here —
+On both **Android and iOS**, the `statusText` property depends on the OS' implementation. It will not retrieve the status text from the server.
+
+Basically, whatever you can do with [`fetch`](https://developer.mozilla.org/docs/Web/API/Window/fetch) should be possible here —
 just check the types to ensure the variables you're passing are supported.
 
 Since I initially developed this for personal use, only basic functionality is supported.
@@ -65,13 +67,11 @@ const bytes = await response.bytes();
 console.log(bytes); // > Uint8Array
 ```
 
-## Configuration for using `http:`
-
-### Android
+## Android configuration for using `http:`
 
 Since Android 9 (API level 28), cleartext (`http:`) traffic is restricted by default. To allow it, you need to explicitly enable it.
 
-#### Allowing HTTP for All Domains
+### Allowing HTTP for All Domains
 
 To enable HTTP for all domains, add the following to your `AndroidManifest.xml`.
 
@@ -82,14 +82,14 @@ To enable HTTP for all domains, add the following to your `AndroidManifest.xml`.
 </application>
 ```
 
-#### Allowing HTTP for Specific Domains Only
+### Allowing HTTP for Specific Domains Only
 
 If you prefer to allow HTTP traffic only for specific domains, use a `networkSecurityConfig` instead.
 
 ```xml
 <application
-    android:networkSecurityConfig="@xml/network_security_config"
-    ... >
+  android:networkSecurityConfig="@xml/network_security_config"
+  ... >
 </application>
 ```
 
@@ -98,9 +98,9 @@ Then, create a `res/xml/network_security_config.xml` file to define the domain-s
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">yourdomain.com</domain>
-    </domain-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">yourdomain.com</domain>
+  </domain-config>
 </network-security-config>
 ```
 
