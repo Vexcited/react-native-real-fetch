@@ -73,13 +73,13 @@ const zipPairs = (arr: Array<string>): Array<[string, string]> => {
 
 
 export interface RequestInit {
-  body?: ReadableStream | string | undefined
+  body?: ReadableStream | Blob | File | string | undefined
 
   /**
    * Any headers you want to add to your request, contained within an object literal
    * whose keys are the names of headers and whose values are the header values.
    */
-  headers?: Record<string, string>
+  headers?: Headers | Record<string, string>
 
   method?: RequestMethod
 
@@ -115,7 +115,13 @@ export class Request {
     this.method = init?.method ?? "GET";
     this.url = input;
     this.redirect = init?.redirect ?? "follow";
-    this.headers = init?.headers ?? {};
+
+    if (init?.headers) {
+      if (init.headers instanceof Headers)
+        this.headers = Object.fromEntries(init.headers);
+      else
+        this.headers = init.headers
+    } else this.headers = {}
 
     if (typeof init?.body === 'string') {
       this.body = stringToStream(init.body);
@@ -144,7 +150,7 @@ export async function fetch (
     body: request.body ? fromReadableStream(request.body) : null
   });
 
-  async function bytes() {
+  async function bytes(): Promise<Uint8Array> {
     const chunks: ArrayBuffer[] = []
 
     if (response.body) {
@@ -163,15 +169,15 @@ export async function fetch (
     return mergeArrayBuffers(chunks)
   }
 
-  async function arrayBuffer() {
+  async function arrayBuffer(): Promise<ArrayBuffer> {
     return (await bytes()).buffer
   }
 
-  async function text() {
+  async function text(): Promise<string> {
     return decoder.decode(await bytes())
   }
 
-  async function json() {
+  async function json<T = any>(): Promise<T> {
     return JSON.parse(await text())
   }
 
