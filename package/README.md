@@ -21,14 +21,14 @@ Please [open an issue](https://github.com/Vexcited/react-native-real-fetch/issue
 
 ## Installation
 
-#### React Native
+### React Native
 
 ```sh
 npm add react-native-real-fetch react-native-nitro-modules
 cd ios && pod install
 ```
 
-#### Expo
+### Expo
 
 ```sh
 npx expo add react-native-real-fetch react-native-nitro-modules
