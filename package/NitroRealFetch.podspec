@@ -11,20 +11,15 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => min_ios_version_supported, :visionos => 1.0 }
-  s.source       = { :git => "https://github.com/mrousavy/nitro.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Vexcited/react-native-real-fetch.git", :tag => "#{s.version}" }
 
   s.source_files = [
-    # Implementation (Swift)
     "ios/**/*.{swift}",
-    # Autolinking/Registration (Objective-C++)
-    "ios/**/*.{m,mm}",
-    # Implementation (C++ objects)
     "cpp/**/*.{hpp,cpp}",
   ]
 
   s.pod_target_xcconfig = {
-    # C++ compiler flags, mainly for folly.
-    "GCC_PREPROCESSOR_DEFINITIONS" => "$(inherited) FOLLY_NO_CONFIG FOLLY_CFG_NO_COROUTINES"
+    'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/ios'
   }
 
   load 'nitrogen/generated/ios/NitroRealFetch+autolinking.rb'
