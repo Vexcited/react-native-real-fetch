@@ -38,7 +38,8 @@
   "scripts": {
     "clean": "rm -rf android/build node_modules/**/android/build lib",
     "codegen": "nitro-codegen --logLevel=\"debug\"",
-    "build": "bob build"
+    "build": "bob build",
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
@@ -58,6 +59,16 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "hooks": {
+      "after:bump": "npm run clean && npm run codegen && npm run build"
+    },
+    "npm": true
+  },
   "devDependencies": {
     "@react-native/typescript-config": "^0.79.2",
     "@types/react": "^19.0.6",
@@ -66,6 +77,7 @@
     "react-native": "0.78.2",
     "react-native-builder-bob": "^0.40.11",
     "react-native-nitro-modules": "*",
+    "release-it": "^19.0.2",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
