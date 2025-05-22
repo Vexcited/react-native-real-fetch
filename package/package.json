@@ -67,7 +67,9 @@
     "hooks": {
       "after:bump": "npm run clean && npm run codegen && npm run build"
     },
-    "npm": true
+    "npm": {
+      "publish": true
+    }
   },
   "devDependencies": {
     "@react-native/typescript-config": "^0.79.2",
