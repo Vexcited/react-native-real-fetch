@@ -21,12 +21,18 @@ Please [open an issue](https://github.com/Vexcited/react-native-real-fetch/issue
 
 ## Installation
 
-You can install `react-native-real-fetch` with the package manager of your choice.
+#### React Native
 
 ```sh
-npm install react-native-real-fetch
-yarn add react-native-real-fetch
-pnpm add react-native-real-fetch
+npm add react-native-real-fetch react-native-nitro-modules
+cd ios && pod install
+```
+
+#### Expo
+
+```sh
+npx expo add react-native-real-fetch react-native-nitro-modules
+npx expo prebuild
 ```
 
 ## Usages
