@@ -29,6 +29,13 @@ class HybridFetch : HybridFetchSpec() {
       connection.doOutput = opts.body != null
       connection.doInput = true
 
+      // Disable cache.
+      connection.useCaches = false
+      connection.defaultUseCaches = false
+      // NOTE: not sure if those headers are somewhat useful ?
+      // connection.setRequestProperty("Cache-Control", "no-cache, no-store, must-revalidate")
+      // connection.setRequestProperty("Pragma", "no-cache")
+
       when (opts.redirection) {
         RequestRedirection.FOLLOW -> connection.instanceFollowRedirects = true
         RequestRedirection.MANUAL -> connection.instanceFollowRedirects = false
