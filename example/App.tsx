@@ -1,11 +1,7 @@
-import { fetch } from "react-native-real-fetch"
-import { useState } from 'react';
+import { fetch } from "react-native-real-fetch";
+import { useState } from "react";
 
-import {
-  SafeAreaView,
-  TextInput,
-  Button,
-} from 'react-native';
+import { SafeAreaView, TextInput, Button } from "react-native";
 
 function App() {
   const [url, setUrl] = useState("http://localhost:6000");
@@ -14,19 +10,25 @@ function App() {
   const handleFetch = async () => {
     try {
       const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         redirect: followRedirects ? "follow" : "manual",
-        headers: { hello: "world" }
+        headers: {
+          hello: "world",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          hello: "world",
+          falsy: false,
+        }),
       });
 
-      console.log(response.status, response.statusText)
-      console.log(response.redirected, response.url)
+      console.log(response.status, response.statusText);
+      console.log(response.redirected, response.url);
       console.log(response.headers);
 
       const body = await response.text();
       console.log({ body });
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
@@ -41,13 +43,10 @@ function App() {
 
       <Button
         title={"Redirection " + (followRedirects ? "ON" : "OFF")}
-        onPress={() => setFollowRedirects(prev => !prev)}
+        onPress={() => setFollowRedirects((prev) => !prev)}
       />
 
-      <Button
-        title="SEND"
-        onPress={handleFetch}
-      />
+      <Button title="SEND" onPress={handleFetch} />
     </SafeAreaView>
   );
 }
