@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "19.0.0",
     "react-native": "0.79.2",
-    "react-native-nitro-modules": "^0.25.2",
+    "react-native-nitro-modules": "0.26.3",
     "react-native-real-fetch": "file:../package"
   },
   "devDependencies": {
