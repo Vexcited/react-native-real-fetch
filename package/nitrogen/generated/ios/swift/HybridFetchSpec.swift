@@ -18,8 +18,9 @@ public protocol HybridFetchSpec_protocol: HybridObject {
 }
 
 /// See ``HybridFetchSpec``
-public class HybridFetchSpec_base {
+open class HybridFetchSpec_base {
   private weak var cxxWrapper: HybridFetchSpec_cxx? = nil
+  public init() { }
   public func getCxxWrapper() -> HybridFetchSpec_cxx {
   #if DEBUG
     guard self is HybridFetchSpec else {

@@ -18,17 +18,16 @@ namespace margelo::nitro::realfetch { enum class RequestMethods; }
 // Forward declaration of `RequestRedirection` to properly resolve imports.
 namespace margelo::nitro::realfetch { enum class RequestRedirection; }
 
-#include <NitroModules/Promise.hpp>
 #include "NativeResponse.hpp"
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include "JNativeResponse.hpp"
 #include <string>
 #include <vector>
-#include <optional>
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
+#include <optional>
 #include "JHybridInputStreamSpec.hpp"
-#include <NitroModules/JNISharedPtr.hpp>
 #include "NativeRequest.hpp"
 #include "JNativeRequest.hpp"
 #include "RequestMethods.hpp"
@@ -51,6 +50,11 @@ namespace margelo::nitro::realfetch {
   size_t JHybridFetchSpec::getExternalMemorySize() noexcept {
     static const auto method = javaClassStatic()->getMethod<jlong()>("getMemorySize");
     return method(_javaPart);
+  }
+
+  void JHybridFetchSpec::dispose() noexcept {
+    static const auto method = javaClassStatic()->getMethod<void()>("dispose");
+    method(_javaPart);
   }
 
   // Properties

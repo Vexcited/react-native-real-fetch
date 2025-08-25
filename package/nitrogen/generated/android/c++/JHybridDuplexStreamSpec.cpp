@@ -15,7 +15,6 @@ namespace margelo::nitro::realfetch { class HybridOutputStreamSpec; }
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
 #include "JHybridInputStreamSpec.hpp"
-#include <NitroModules/JNISharedPtr.hpp>
 #include "HybridOutputStreamSpec.hpp"
 #include "JHybridOutputStreamSpec.hpp"
 
@@ -36,22 +35,27 @@ namespace margelo::nitro::realfetch {
     return method(_javaPart);
   }
 
+  void JHybridDuplexStreamSpec::dispose() noexcept {
+    static const auto method = javaClassStatic()->getMethod<void()>("dispose");
+    method(_javaPart);
+  }
+
   // Properties
-  std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> JHybridDuplexStreamSpec::getInputStream() {
+  std::shared_ptr<HybridInputStreamSpec> JHybridDuplexStreamSpec::getInputStream() {
     static const auto method = javaClassStatic()->getMethod<jni::local_ref<JHybridInputStreamSpec::javaobject>()>("getInputStream");
     auto __result = method(_javaPart);
-    return JNISharedPtr::make_shared_from_jni<JHybridInputStreamSpec>(jni::make_global(__result));
+    return __result->cthis()->shared_cast<JHybridInputStreamSpec>();
   }
-  void JHybridDuplexStreamSpec::setInputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& inputStream) {
+  void JHybridDuplexStreamSpec::setInputStream(const std::shared_ptr<HybridInputStreamSpec>& inputStream) {
     static const auto method = javaClassStatic()->getMethod<void(jni::alias_ref<JHybridInputStreamSpec::javaobject> /* inputStream */)>("setInputStream");
     method(_javaPart, std::dynamic_pointer_cast<JHybridInputStreamSpec>(inputStream)->getJavaPart());
   }
-  std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> JHybridDuplexStreamSpec::getOutputStream() {
+  std::shared_ptr<HybridOutputStreamSpec> JHybridDuplexStreamSpec::getOutputStream() {
     static const auto method = javaClassStatic()->getMethod<jni::local_ref<JHybridOutputStreamSpec::javaobject>()>("getOutputStream");
     auto __result = method(_javaPart);
-    return JNISharedPtr::make_shared_from_jni<JHybridOutputStreamSpec>(jni::make_global(__result));
+    return __result->cthis()->shared_cast<JHybridOutputStreamSpec>();
   }
-  void JHybridDuplexStreamSpec::setOutputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>& outputStream) {
+  void JHybridDuplexStreamSpec::setOutputStream(const std::shared_ptr<HybridOutputStreamSpec>& outputStream) {
     static const auto method = javaClassStatic()->getMethod<void(jni::alias_ref<JHybridOutputStreamSpec::javaobject> /* outputStream */)>("setOutputStream");
     method(_javaPart, std::dynamic_pointer_cast<JHybridOutputStreamSpec>(outputStream)->getJavaPart());
   }

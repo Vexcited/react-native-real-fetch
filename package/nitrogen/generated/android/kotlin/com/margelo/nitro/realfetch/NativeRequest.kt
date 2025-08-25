@@ -11,6 +11,7 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NativeRequest".
  */
@@ -20,10 +21,20 @@ data class NativeRequest
   @DoNotStrip
   @Keep
   constructor(
+    @DoNotStrip
+    @Keep
     val url: String,
+    @DoNotStrip
+    @Keep
     val method: RequestMethods,
+    @DoNotStrip
+    @Keep
     val redirection: RequestRedirection,
+    @DoNotStrip
+    @Keep
     val headers: Array<String>,
+    @DoNotStrip
+    @Keep
     val body: HybridInputStreamSpec?
   ) {
   /* main constructor */

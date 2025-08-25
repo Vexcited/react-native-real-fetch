@@ -49,10 +49,10 @@ namespace margelo::nitro::realfetch {
 
     public:
       // Properties
-      virtual std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> getInputStream() = 0;
-      virtual void setInputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& inputStream) = 0;
-      virtual std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> getOutputStream() = 0;
-      virtual void setOutputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>& outputStream) = 0;
+      virtual std::shared_ptr<HybridInputStreamSpec> getInputStream() = 0;
+      virtual void setInputStream(const std::shared_ptr<HybridInputStreamSpec>& inputStream) = 0;
+      virtual std::shared_ptr<HybridOutputStreamSpec> getOutputStream() = 0;
+      virtual void setOutputStream(const std::shared_ptr<HybridOutputStreamSpec>& outputStream) = 0;
 
     public:
       // Methods

@@ -14,14 +14,15 @@ public protocol HybridInputStreamSpec_protocol: HybridObject {
   
 
   // Methods
-  func read() throws -> Promise<ArrayBufferHolder>
+  func read() throws -> Promise<ArrayBuffer>
   func open() throws -> Void
   func close() throws -> Void
 }
 
 /// See ``HybridInputStreamSpec``
-public class HybridInputStreamSpec_base {
+open class HybridInputStreamSpec_base {
   private weak var cxxWrapper: HybridInputStreamSpec_cxx? = nil
+  public init() { }
   public func getCxxWrapper() -> HybridInputStreamSpec_cxx {
   #if DEBUG
     guard self is HybridInputStreamSpec else {

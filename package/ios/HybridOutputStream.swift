@@ -12,7 +12,7 @@ class HybridOutputStream: HybridOutputStreamSpec {
     stream.open()
   }
 
-  func write(buffer: ArrayBufferHolder) throws -> Promise<Void> {
+  func write(buffer: ArrayBuffer) throws -> Promise<Void> {
     let promise = Promise<Void>()
 
     let data = buffer.data

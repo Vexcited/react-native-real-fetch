@@ -29,9 +29,9 @@ namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"
 #include <vector>
-#include <optional>
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
+#include <optional>
 
 namespace margelo::nitro::realfetch {
 
@@ -44,37 +44,35 @@ namespace margelo::nitro::realfetch {
     RequestMethods method     SWIFT_PRIVATE;
     RequestRedirection redirection     SWIFT_PRIVATE;
     std::vector<std::string> headers     SWIFT_PRIVATE;
-    std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body     SWIFT_PRIVATE;
+    std::optional<std::shared_ptr<HybridInputStreamSpec>> body     SWIFT_PRIVATE;
 
   public:
     NativeRequest() = default;
-    explicit NativeRequest(std::string url, RequestMethods method, RequestRedirection redirection, std::vector<std::string> headers, std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body): url(url), method(method), redirection(redirection), headers(headers), body(body) {}
+    explicit NativeRequest(std::string url, RequestMethods method, RequestRedirection redirection, std::vector<std::string> headers, std::optional<std::shared_ptr<HybridInputStreamSpec>> body): url(url), method(method), redirection(redirection), headers(headers), body(body) {}
   };
 
 } // namespace margelo::nitro::realfetch
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::realfetch;
-
   // C++ NativeRequest <> JS NativeRequest (object)
   template <>
-  struct JSIConverter<NativeRequest> final {
-    static inline NativeRequest fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::realfetch::NativeRequest> final {
+    static inline margelo::nitro::realfetch::NativeRequest fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return NativeRequest(
+      return margelo::nitro::realfetch::NativeRequest(
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "url")),
-        JSIConverter<RequestMethods>::fromJSI(runtime, obj.getProperty(runtime, "method")),
-        JSIConverter<RequestRedirection>::fromJSI(runtime, obj.getProperty(runtime, "redirection")),
+        JSIConverter<margelo::nitro::realfetch::RequestMethods>::fromJSI(runtime, obj.getProperty(runtime, "method")),
+        JSIConverter<margelo::nitro::realfetch::RequestRedirection>::fromJSI(runtime, obj.getProperty(runtime, "redirection")),
         JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "headers")),
         JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::fromJSI(runtime, obj.getProperty(runtime, "body"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const NativeRequest& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::realfetch::NativeRequest& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "url", JSIConverter<std::string>::toJSI(runtime, arg.url));
-      obj.setProperty(runtime, "method", JSIConverter<RequestMethods>::toJSI(runtime, arg.method));
-      obj.setProperty(runtime, "redirection", JSIConverter<RequestRedirection>::toJSI(runtime, arg.redirection));
+      obj.setProperty(runtime, "method", JSIConverter<margelo::nitro::realfetch::RequestMethods>::toJSI(runtime, arg.method));
+      obj.setProperty(runtime, "redirection", JSIConverter<margelo::nitro::realfetch::RequestRedirection>::toJSI(runtime, arg.redirection));
       obj.setProperty(runtime, "headers", JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.headers));
       obj.setProperty(runtime, "body", JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::toJSI(runtime, arg.body));
       return obj;
@@ -85,8 +83,8 @@ namespace margelo::nitro {
       }
       jsi::Object obj = value.getObject(runtime);
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "url"))) return false;
-      if (!JSIConverter<RequestMethods>::canConvert(runtime, obj.getProperty(runtime, "method"))) return false;
-      if (!JSIConverter<RequestRedirection>::canConvert(runtime, obj.getProperty(runtime, "redirection"))) return false;
+      if (!JSIConverter<margelo::nitro::realfetch::RequestMethods>::canConvert(runtime, obj.getProperty(runtime, "method"))) return false;
+      if (!JSIConverter<margelo::nitro::realfetch::RequestRedirection>::canConvert(runtime, obj.getProperty(runtime, "redirection"))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, "headers"))) return false;
       if (!JSIConverter<std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>>>::canConvert(runtime, obj.getProperty(runtime, "body"))) return false;
       return true;

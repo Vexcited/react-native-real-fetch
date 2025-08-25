@@ -19,8 +19,9 @@ public protocol HybridDuplexStreamSpec_protocol: HybridObject {
 }
 
 /// See ``HybridDuplexStreamSpec``
-public class HybridDuplexStreamSpec_base {
+open class HybridDuplexStreamSpec_base {
   private weak var cxxWrapper: HybridDuplexStreamSpec_cxx? = nil
+  public init() { }
   public func getCxxWrapper() -> HybridDuplexStreamSpec_cxx {
   #if DEBUG
     guard self is HybridDuplexStreamSpec else {

@@ -15,11 +15,7 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class RequestRedirection {
-  FOLLOW,
-  MANUAL;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class RequestRedirection(@DoNotStrip @Keep val value: Int) {
+  FOLLOW(0),
+  MANUAL(1);
 }

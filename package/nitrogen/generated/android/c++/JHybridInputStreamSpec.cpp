@@ -10,8 +10,8 @@
 // Forward declaration of `ArrayBuffer` to properly resolve imports.
 namespace NitroModules { class ArrayBuffer; }
 
-#include <NitroModules/Promise.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include <NitroModules/JArrayBuffer.hpp>
 #include <NitroModules/JUnit.hpp>
@@ -31,6 +31,11 @@ namespace margelo::nitro::realfetch {
   size_t JHybridInputStreamSpec::getExternalMemorySize() noexcept {
     static const auto method = javaClassStatic()->getMethod<jlong()>("getMemorySize");
     return method(_javaPart);
+  }
+
+  void JHybridInputStreamSpec::dispose() noexcept {
+    static const auto method = javaClassStatic()->getMethod<void()>("dispose");
+    method(_javaPart);
   }
 
   // Properties

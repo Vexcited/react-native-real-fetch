@@ -17,8 +17,8 @@ namespace NitroModules { class ArrayBuffer; }
 // Forward declaration of `ArrayBufferHolder` to properly resolve imports.
 namespace NitroModules { class ArrayBufferHolder; }
 
-#include <NitroModules/Promise.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/ArrayBufferHolder.hpp>
 
 #include "NitroRealFetch-Swift-Cxx-Umbrella.hpp"
@@ -49,9 +49,11 @@ namespace margelo::nitro::realfetch {
     }
 
   public:
-    // Get memory pressure
     inline size_t getExternalMemorySize() noexcept override {
       return _swiftPart.getMemorySize();
+    }
+    void dispose() noexcept override {
+      _swiftPart.dispose();
     }
 
   public:

@@ -37,24 +37,22 @@ namespace margelo::nitro::realfetch {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::realfetch;
-
   // C++ RequestRedirection <> JS RequestRedirection (union)
   template <>
-  struct JSIConverter<RequestRedirection> final {
-    static inline RequestRedirection fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::realfetch::RequestRedirection> final {
+    static inline margelo::nitro::realfetch::RequestRedirection fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("follow"): return RequestRedirection::FOLLOW;
-        case hashString("manual"): return RequestRedirection::MANUAL;
+        case hashString("follow"): return margelo::nitro::realfetch::RequestRedirection::FOLLOW;
+        case hashString("manual"): return margelo::nitro::realfetch::RequestRedirection::MANUAL;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum RequestRedirection - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, RequestRedirection arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::realfetch::RequestRedirection arg) {
       switch (arg) {
-        case RequestRedirection::FOLLOW: return JSIConverter<std::string>::toJSI(runtime, "follow");
-        case RequestRedirection::MANUAL: return JSIConverter<std::string>::toJSI(runtime, "manual");
+        case margelo::nitro::realfetch::RequestRedirection::FOLLOW: return JSIConverter<std::string>::toJSI(runtime, "follow");
+        case margelo::nitro::realfetch::RequestRedirection::MANUAL: return JSIConverter<std::string>::toJSI(runtime, "manual");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert RequestRedirection to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

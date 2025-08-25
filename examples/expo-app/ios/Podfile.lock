@@ -110,7 +110,7 @@ PODS:
   - libwebp/sharpyuv (1.5.0)
   - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
-  - NitroModules (0.26.3):
+  - NitroModules (0.28.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2443,7 +2443,7 @@ SPEC CHECKSUMS:
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
-  NitroModules: f36b94e48ff1705fc6b84bc1953f40e2da4196c2
+  NitroModules: bc2dab0712fcd1a91aaafcd3a7a0c060cd1a7294
   NitroRealFetch: eb39e2e737a959146ebc082b795a6124ce56ef77
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 9bc64754b40b86fa5e32f293ab3ea8eea2248339

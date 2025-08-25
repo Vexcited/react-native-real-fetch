@@ -25,9 +25,9 @@ public extension NativeResponse {
         __vector.push_back(std.string(__item))
       }
       return __vector
-    }(), { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__ in
+    }(), { () -> bridge.std__optional_std__shared_ptr_HybridInputStreamSpec__ in
       if let __unwrappedValue = body {
-        return bridge.create_std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ in
+        return bridge.create_std__optional_std__shared_ptr_HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_HybridInputStreamSpec_ in
           let __cxxWrapped = __unwrappedValue.getCxxWrapper()
           return __cxxWrapped.getCxxPart()
         }())
@@ -91,9 +91,10 @@ public extension NativeResponse {
     @inline(__always)
     get {
       return { () -> (any HybridInputStreamSpec)? in
-        if let __unwrapped = self.__body.value {
+        if bridge.has_value_std__optional_std__shared_ptr_HybridInputStreamSpec__(self.__body) {
+          let __unwrapped = bridge.get_std__optional_std__shared_ptr_HybridInputStreamSpec__(self.__body)
           return { () -> HybridInputStreamSpec in
-            let __unsafePointer = bridge.get_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(__unwrapped)
+            let __unsafePointer = bridge.get_std__shared_ptr_HybridInputStreamSpec_(__unwrapped)
             let __instance = HybridInputStreamSpec_cxx.fromUnsafe(__unsafePointer)
             return __instance.getHybridInputStreamSpec()
           }()
@@ -104,9 +105,9 @@ public extension NativeResponse {
     }
     @inline(__always)
     set {
-      self.__body = { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__ in
+      self.__body = { () -> bridge.std__optional_std__shared_ptr_HybridInputStreamSpec__ in
         if let __unwrappedValue = newValue {
-          return bridge.create_std__optional_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ in
+          return bridge.create_std__optional_std__shared_ptr_HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_HybridInputStreamSpec_ in
             let __cxxWrapped = __unwrappedValue.getCxxWrapper()
             return __cxxWrapped.getCxxPart()
           }())

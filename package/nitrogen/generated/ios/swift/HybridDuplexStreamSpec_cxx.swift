@@ -17,7 +17,7 @@ import NitroModules
  * - Other HybridObjects need to be wrapped/unwrapped from the Swift TCxx wrapper
  * - Throwing methods need to be wrapped with a Result<T, Error> type, as exceptions cannot be propagated to C++
  */
-public class HybridDuplexStreamSpec_cxx {
+open class HybridDuplexStreamSpec_cxx {
   /**
    * The Swift <> C++ bridge's namespace (`margelo::nitro::realfetch::bridge::swift`)
    * from `NitroRealFetch-Swift-Cxx-Bridge.hpp`.
@@ -33,7 +33,7 @@ public class HybridDuplexStreamSpec_cxx {
   /**
    * Holds a weak pointer to the C++ class that wraps the Swift class.
    */
-  private var __cxxPart: bridge.std__weak_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_
+  private var __cxxPart: bridge.std__weak_ptr_HybridDuplexStreamSpec_
 
   /**
    * Create a new `HybridDuplexStreamSpec_cxx` that wraps the given `HybridDuplexStreamSpec`.
@@ -72,15 +72,15 @@ public class HybridDuplexStreamSpec_cxx {
 
   /**
    * Gets (or creates) the C++ part of this Hybrid Object.
-   * The C++ part is a `std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec>`.
+   * The C++ part is a `std::shared_ptr<HybridDuplexStreamSpec>`.
    */
-  public func getCxxPart() -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_ {
+  public func getCxxPart() -> bridge.std__shared_ptr_HybridDuplexStreamSpec_ {
     let cachedCxxPart = self.__cxxPart.lock()
     if cachedCxxPart.__convertToBool() {
       return cachedCxxPart
     } else {
-      let newCxxPart = bridge.create_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(self.toUnsafe())
-      __cxxPart = bridge.weakify_std__shared_ptr_margelo__nitro__realfetch__HybridDuplexStreamSpec_(newCxxPart)
+      let newCxxPart = bridge.create_std__shared_ptr_HybridDuplexStreamSpec_(self.toUnsafe())
+      __cxxPart = bridge.weakify_std__shared_ptr_HybridDuplexStreamSpec_(newCxxPart)
       return newCxxPart
     }
   }
@@ -96,11 +96,20 @@ public class HybridDuplexStreamSpec_cxx {
     return MemoryHelper.getSizeOf(self.__implementation) + self.__implementation.memorySize
   }
 
+  /**
+   * Call dispose() on the Swift class.
+   * This _may_ be called manually from JS.
+   */
+  @inline(__always)
+  public func dispose() {
+    self.__implementation.dispose()
+  }
+
   // Properties
-  public final var inputStream: bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ {
+  public final var inputStream: bridge.std__shared_ptr_HybridInputStreamSpec_ {
     @inline(__always)
     get {
-      return { () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_ in
+      return { () -> bridge.std__shared_ptr_HybridInputStreamSpec_ in
         let __cxxWrapped = self.__implementation.inputStream.getCxxWrapper()
         return __cxxWrapped.getCxxPart()
       }()
@@ -108,17 +117,17 @@ public class HybridDuplexStreamSpec_cxx {
     @inline(__always)
     set {
       self.__implementation.inputStream = { () -> HybridInputStreamSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_margelo__nitro__realfetch__HybridInputStreamSpec_(newValue)
+        let __unsafePointer = bridge.get_std__shared_ptr_HybridInputStreamSpec_(newValue)
         let __instance = HybridInputStreamSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridInputStreamSpec()
       }()
     }
   }
   
-  public final var outputStream: bridge.std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ {
+  public final var outputStream: bridge.std__shared_ptr_HybridOutputStreamSpec_ {
     @inline(__always)
     get {
-      return { () -> bridge.std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_ in
+      return { () -> bridge.std__shared_ptr_HybridOutputStreamSpec_ in
         let __cxxWrapped = self.__implementation.outputStream.getCxxWrapper()
         return __cxxWrapped.getCxxPart()
       }()
@@ -126,7 +135,7 @@ public class HybridDuplexStreamSpec_cxx {
     @inline(__always)
     set {
       self.__implementation.outputStream = { () -> HybridOutputStreamSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_margelo__nitro__realfetch__HybridOutputStreamSpec_(newValue)
+        let __unsafePointer = bridge.get_std__shared_ptr_HybridOutputStreamSpec_(newValue)
         let __instance = HybridOutputStreamSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOutputStreamSpec()
       }()

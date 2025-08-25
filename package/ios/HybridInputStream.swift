@@ -12,8 +12,8 @@ class HybridInputStream: HybridInputStreamSpec {
     stream.open()
   }
 
-  func read() throws -> Promise<ArrayBufferHolder> {
-    let promise = Promise<ArrayBufferHolder>()
+  func read() throws -> Promise<ArrayBuffer> {
+    let promise = Promise<ArrayBuffer>()
 
     Task {
       let size = Int(64 * 1024)
@@ -27,7 +27,7 @@ class HybridInputStream: HybridInputStreamSpec {
 
       if bytesRead >= 0 {
         promise.resolve(
-          withResult: ArrayBufferHolder.wrap(
+          withResult: ArrayBuffer.wrap(
             dataWithoutCopy: data, size: bytesRead, onDelete: deleteFunc))
       } else {
         deleteFunc()

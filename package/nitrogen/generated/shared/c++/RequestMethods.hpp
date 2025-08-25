@@ -44,38 +44,36 @@ namespace margelo::nitro::realfetch {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::realfetch;
-
   // C++ RequestMethods <> JS RequestMethods (union)
   template <>
-  struct JSIConverter<RequestMethods> final {
-    static inline RequestMethods fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::realfetch::RequestMethods> final {
+    static inline margelo::nitro::realfetch::RequestMethods fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("GET"): return RequestMethods::GET;
-        case hashString("HEAD"): return RequestMethods::HEAD;
-        case hashString("POST"): return RequestMethods::POST;
-        case hashString("PUT"): return RequestMethods::PUT;
-        case hashString("DELETE"): return RequestMethods::DELETE;
-        case hashString("CONNECT"): return RequestMethods::CONNECT;
-        case hashString("OPTIONS"): return RequestMethods::OPTIONS;
-        case hashString("TRACE"): return RequestMethods::TRACE;
-        case hashString("PATCH"): return RequestMethods::PATCH;
+        case hashString("GET"): return margelo::nitro::realfetch::RequestMethods::GET;
+        case hashString("HEAD"): return margelo::nitro::realfetch::RequestMethods::HEAD;
+        case hashString("POST"): return margelo::nitro::realfetch::RequestMethods::POST;
+        case hashString("PUT"): return margelo::nitro::realfetch::RequestMethods::PUT;
+        case hashString("DELETE"): return margelo::nitro::realfetch::RequestMethods::DELETE;
+        case hashString("CONNECT"): return margelo::nitro::realfetch::RequestMethods::CONNECT;
+        case hashString("OPTIONS"): return margelo::nitro::realfetch::RequestMethods::OPTIONS;
+        case hashString("TRACE"): return margelo::nitro::realfetch::RequestMethods::TRACE;
+        case hashString("PATCH"): return margelo::nitro::realfetch::RequestMethods::PATCH;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum RequestMethods - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, RequestMethods arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::realfetch::RequestMethods arg) {
       switch (arg) {
-        case RequestMethods::GET: return JSIConverter<std::string>::toJSI(runtime, "GET");
-        case RequestMethods::HEAD: return JSIConverter<std::string>::toJSI(runtime, "HEAD");
-        case RequestMethods::POST: return JSIConverter<std::string>::toJSI(runtime, "POST");
-        case RequestMethods::PUT: return JSIConverter<std::string>::toJSI(runtime, "PUT");
-        case RequestMethods::DELETE: return JSIConverter<std::string>::toJSI(runtime, "DELETE");
-        case RequestMethods::CONNECT: return JSIConverter<std::string>::toJSI(runtime, "CONNECT");
-        case RequestMethods::OPTIONS: return JSIConverter<std::string>::toJSI(runtime, "OPTIONS");
-        case RequestMethods::TRACE: return JSIConverter<std::string>::toJSI(runtime, "TRACE");
-        case RequestMethods::PATCH: return JSIConverter<std::string>::toJSI(runtime, "PATCH");
+        case margelo::nitro::realfetch::RequestMethods::GET: return JSIConverter<std::string>::toJSI(runtime, "GET");
+        case margelo::nitro::realfetch::RequestMethods::HEAD: return JSIConverter<std::string>::toJSI(runtime, "HEAD");
+        case margelo::nitro::realfetch::RequestMethods::POST: return JSIConverter<std::string>::toJSI(runtime, "POST");
+        case margelo::nitro::realfetch::RequestMethods::PUT: return JSIConverter<std::string>::toJSI(runtime, "PUT");
+        case margelo::nitro::realfetch::RequestMethods::DELETE: return JSIConverter<std::string>::toJSI(runtime, "DELETE");
+        case margelo::nitro::realfetch::RequestMethods::CONNECT: return JSIConverter<std::string>::toJSI(runtime, "CONNECT");
+        case margelo::nitro::realfetch::RequestMethods::OPTIONS: return JSIConverter<std::string>::toJSI(runtime, "OPTIONS");
+        case margelo::nitro::realfetch::RequestMethods::TRACE: return JSIConverter<std::string>::toJSI(runtime, "TRACE");
+        case margelo::nitro::realfetch::RequestMethods::PATCH: return JSIConverter<std::string>::toJSI(runtime, "PATCH");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert RequestMethods to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

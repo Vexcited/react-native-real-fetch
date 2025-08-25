@@ -33,6 +33,11 @@ namespace margelo::nitro::realfetch {
     return method(_javaPart);
   }
 
+  void JHybridOutputStreamSpec::dispose() noexcept {
+    static const auto method = javaClassStatic()->getMethod<void()>("dispose");
+    method(_javaPart);
+  }
+
   // Properties
   
 

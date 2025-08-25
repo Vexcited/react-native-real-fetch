@@ -18,8 +18,8 @@ namespace margelo::nitro::realfetch { struct NativeResponse; }
 // Forward declaration of `NativeRequest` to properly resolve imports.
 namespace margelo::nitro::realfetch { struct NativeRequest; }
 
-#include <NitroModules/Promise.hpp>
 #include "NativeResponse.hpp"
+#include <NitroModules/Promise.hpp>
 #include "NativeRequest.hpp"
 
 namespace margelo::nitro::realfetch {

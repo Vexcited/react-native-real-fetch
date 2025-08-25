@@ -23,13 +23,13 @@ namespace margelo::nitro::realfetch { enum class RequestMethods; }
 // Forward declaration of `RequestRedirection` to properly resolve imports.
 namespace margelo::nitro::realfetch { enum class RequestRedirection; }
 
-#include <NitroModules/Promise.hpp>
 #include "NativeResponse.hpp"
+#include <NitroModules/Promise.hpp>
 #include <string>
 #include <vector>
-#include <optional>
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
+#include <optional>
 #include "NativeRequest.hpp"
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"
@@ -62,9 +62,11 @@ namespace margelo::nitro::realfetch {
     }
 
   public:
-    // Get memory pressure
     inline size_t getExternalMemorySize() noexcept override {
       return _swiftPart.getMemorySize();
+    }
+    void dispose() noexcept override {
+      _swiftPart.dispose();
     }
 
   public:

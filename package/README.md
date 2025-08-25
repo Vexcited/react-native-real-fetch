@@ -24,14 +24,14 @@ Please [open an issue](https://github.com/Vexcited/react-native-real-fetch/issue
 ### React Native
 
 ```sh
-npm add react-native-real-fetch react-native-nitro-modules@0.26.3
+npm add react-native-real-fetch react-native-nitro-modules@^0.28.1
 cd ios && pod install
 ```
 
 ### Expo
 
 ```sh
-npx expo add react-native-real-fetch react-native-nitro-modules@0.26.3
+npx expo add react-native-real-fetch react-native-nitro-modules@^0.28.1
 npx expo prebuild
 ```
 
@@ -51,7 +51,7 @@ const { status, headers } = await fetch("http://api.local.dev/api/login", {
   method: "POST",
   redirect: "manual",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ username, password })
+  body: JSON.stringify({ username, password }),
 });
 
 if (status === 200) {
@@ -64,7 +64,7 @@ if (status === 200) {
 import { fetch } from "react-native-real-fetch";
 
 const response = await fetch("http://api.local.dev/api/user", {
-  headers: { "Cookie": "session=some_token; lang=en" }
+  headers: { Cookie: "session=some_token; lang=en" },
   // Only the given cookies will be sent, no stored additional cookies will be sent !
   // In fact, nothing is stored.
 });

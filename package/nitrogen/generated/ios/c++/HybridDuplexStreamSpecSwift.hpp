@@ -49,25 +49,27 @@ namespace margelo::nitro::realfetch {
     }
 
   public:
-    // Get memory pressure
     inline size_t getExternalMemorySize() noexcept override {
       return _swiftPart.getMemorySize();
+    }
+    void dispose() noexcept override {
+      _swiftPart.dispose();
     }
 
   public:
     // Properties
-    inline std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> getInputStream() noexcept override {
+    inline std::shared_ptr<HybridInputStreamSpec> getInputStream() noexcept override {
       auto __result = _swiftPart.getInputStream();
       return __result;
     }
-    inline void setInputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& inputStream) noexcept override {
+    inline void setInputStream(const std::shared_ptr<HybridInputStreamSpec>& inputStream) noexcept override {
       _swiftPart.setInputStream(inputStream);
     }
-    inline std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> getOutputStream() noexcept override {
+    inline std::shared_ptr<HybridOutputStreamSpec> getOutputStream() noexcept override {
       auto __result = _swiftPart.getOutputStream();
       return __result;
     }
-    inline void setOutputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>& outputStream) noexcept override {
+    inline void setOutputStream(const std::shared_ptr<HybridOutputStreamSpec>& outputStream) noexcept override {
       _swiftPart.setOutputStream(outputStream);
     }
 

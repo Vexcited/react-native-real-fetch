@@ -25,14 +25,14 @@
   HybridObjectRegistry::registerHybridObjectConstructor(
     "Fetch",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<margelo::nitro::realfetch::HybridFetchSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createFetch();
+      std::shared_ptr<HybridFetchSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createFetch();
       return hybridObject;
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
     "DuplexStream",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<margelo::nitro::realfetch::HybridDuplexStreamSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createDuplexStream();
+      std::shared_ptr<HybridDuplexStreamSpec> hybridObject = NitroRealFetch::NitroRealFetchAutolinking::createDuplexStream();
       return hybridObject;
     }
   );

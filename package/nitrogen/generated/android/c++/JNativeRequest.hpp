@@ -16,7 +16,6 @@
 #include "JRequestRedirection.hpp"
 #include "RequestMethods.hpp"
 #include "RequestRedirection.hpp"
-#include <NitroModules/JNISharedPtr.hpp>
 #include <memory>
 #include <optional>
 #include <string>
@@ -65,7 +64,7 @@ namespace margelo::nitro::realfetch {
           }
           return __vector;
         }(),
-        body != nullptr ? std::make_optional(JNISharedPtr::make_shared_from_jni<JHybridInputStreamSpec>(jni::make_global(body))) : std::nullopt
+        body != nullptr ? std::make_optional(body->cthis()->shared_cast<JHybridInputStreamSpec>()) : std::nullopt
       );
     }
 

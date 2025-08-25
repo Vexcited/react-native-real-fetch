@@ -29,6 +29,7 @@ namespace margelo::nitro::realfetch {
     // C++ constructor (called from Java via `initHybrid()`)
     explicit JHybridDuplexStreamSpec(jni::alias_ref<jhybridobject> jThis) :
       HybridObject(HybridDuplexStreamSpec::TAG),
+      HybridBase(jThis),
       _javaPart(jni::make_global(jThis)) {}
 
   public:
@@ -39,6 +40,7 @@ namespace margelo::nitro::realfetch {
 
   public:
     size_t getExternalMemorySize() noexcept override;
+    void dispose() noexcept override;
 
   public:
     inline const jni::global_ref<JHybridDuplexStreamSpec::javaobject>& getJavaPart() const noexcept {
@@ -47,10 +49,10 @@ namespace margelo::nitro::realfetch {
 
   public:
     // Properties
-    std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec> getInputStream() override;
-    void setInputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>& inputStream) override;
-    std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec> getOutputStream() override;
-    void setOutputStream(const std::shared_ptr<margelo::nitro::realfetch::HybridOutputStreamSpec>& outputStream) override;
+    std::shared_ptr<HybridInputStreamSpec> getInputStream() override;
+    void setInputStream(const std::shared_ptr<HybridInputStreamSpec>& inputStream) override;
+    std::shared_ptr<HybridOutputStreamSpec> getOutputStream() override;
+    void setOutputStream(const std::shared_ptr<HybridOutputStreamSpec>& outputStream) override;
 
   public:
     // Methods

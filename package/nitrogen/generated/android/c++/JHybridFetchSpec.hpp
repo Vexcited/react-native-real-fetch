@@ -29,6 +29,7 @@ namespace margelo::nitro::realfetch {
     // C++ constructor (called from Java via `initHybrid()`)
     explicit JHybridFetchSpec(jni::alias_ref<jhybridobject> jThis) :
       HybridObject(HybridFetchSpec::TAG),
+      HybridBase(jThis),
       _javaPart(jni::make_global(jThis)) {}
 
   public:
@@ -39,6 +40,7 @@ namespace margelo::nitro::realfetch {
 
   public:
     size_t getExternalMemorySize() noexcept override;
+    void dispose() noexcept override;
 
   public:
     inline const jni::global_ref<JHybridFetchSpec::javaobject>& getJavaPart() const noexcept {

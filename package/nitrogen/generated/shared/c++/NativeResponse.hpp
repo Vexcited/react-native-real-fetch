@@ -23,9 +23,9 @@ namespace margelo::nitro::realfetch { class HybridInputStreamSpec; }
 
 #include <string>
 #include <vector>
-#include <optional>
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
+#include <optional>
 
 namespace margelo::nitro::realfetch {
 
@@ -38,26 +38,24 @@ namespace margelo::nitro::realfetch {
     double status     SWIFT_PRIVATE;
     std::string statusText     SWIFT_PRIVATE;
     std::vector<std::string> headers     SWIFT_PRIVATE;
-    std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body     SWIFT_PRIVATE;
+    std::optional<std::shared_ptr<HybridInputStreamSpec>> body     SWIFT_PRIVATE;
     bool redirected     SWIFT_PRIVATE;
 
   public:
     NativeResponse() = default;
-    explicit NativeResponse(std::string url, double status, std::string statusText, std::vector<std::string> headers, std::optional<std::shared_ptr<margelo::nitro::realfetch::HybridInputStreamSpec>> body, bool redirected): url(url), status(status), statusText(statusText), headers(headers), body(body), redirected(redirected) {}
+    explicit NativeResponse(std::string url, double status, std::string statusText, std::vector<std::string> headers, std::optional<std::shared_ptr<HybridInputStreamSpec>> body, bool redirected): url(url), status(status), statusText(statusText), headers(headers), body(body), redirected(redirected) {}
   };
 
 } // namespace margelo::nitro::realfetch
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::realfetch;
-
   // C++ NativeResponse <> JS NativeResponse (object)
   template <>
-  struct JSIConverter<NativeResponse> final {
-    static inline NativeResponse fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::realfetch::NativeResponse> final {
+    static inline margelo::nitro::realfetch::NativeResponse fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return NativeResponse(
+      return margelo::nitro::realfetch::NativeResponse(
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "url")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "status")),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "statusText")),
@@ -66,7 +64,7 @@ namespace margelo::nitro {
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "redirected"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const NativeResponse& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::realfetch::NativeResponse& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "url", JSIConverter<std::string>::toJSI(runtime, arg.url));
       obj.setProperty(runtime, "status", JSIConverter<double>::toJSI(runtime, arg.status));

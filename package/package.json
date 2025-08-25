@@ -65,7 +65,7 @@
       "tagName": "v${version}"
     },
     "hooks": {
-      "after:bump": "npm run clean && npm run codegen && npm run build"
+      "after:bump": "bun run clean && bun run codegen && bun run build"
     },
     "npm": {
       "publish": true
@@ -74,18 +74,18 @@
   "devDependencies": {
     "@react-native/typescript-config": "^0.79.2",
     "@types/react": "^19.0.6",
-    "nitro-codegen": "0.26.3",
+    "nitro-codegen": "^0.28.1",
     "react": "19.0.0",
     "react-native": "0.78.2",
     "react-native-builder-bob": "^0.40.11",
-    "react-native-nitro-modules": "0.26.3",
+    "react-native-nitro-modules": "^0.28.1",
     "release-it": "^19.0.2",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-nitro-modules": "0.26.3"
+    "react-native-nitro-modules": "^0.28.1"
   },
   "dependencies": {
     "@bacons/text-decoder": "^0.0.0",

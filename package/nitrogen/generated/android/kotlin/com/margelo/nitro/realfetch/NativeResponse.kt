@@ -11,6 +11,7 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NativeResponse".
  */
@@ -20,11 +21,23 @@ data class NativeResponse
   @DoNotStrip
   @Keep
   constructor(
+    @DoNotStrip
+    @Keep
     val url: String,
+    @DoNotStrip
+    @Keep
     val status: Double,
+    @DoNotStrip
+    @Keep
     val statusText: String,
+    @DoNotStrip
+    @Keep
     val headers: Array<String>,
+    @DoNotStrip
+    @Keep
     val body: HybridInputStreamSpec?,
+    @DoNotStrip
+    @Keep
     val redirected: Boolean
   ) {
   /* main constructor */

@@ -15,18 +15,14 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class RequestMethods {
-  GET,
-  HEAD,
-  POST,
-  PUT,
-  DELETE,
-  CONNECT,
-  OPTIONS,
-  TRACE,
-  PATCH;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class RequestMethods(@DoNotStrip @Keep val value: Int) {
+  GET(0),
+  HEAD(1),
+  POST(2),
+  PUT(3),
+  DELETE(4),
+  CONNECT(5),
+  OPTIONS(6),
+  TRACE(7),
+  PATCH(8);
 }

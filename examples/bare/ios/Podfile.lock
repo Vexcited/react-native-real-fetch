@@ -8,7 +8,7 @@ PODS:
   - hermes-engine (0.79.2):
     - hermes-engine/Pre-built (= 0.79.2)
   - hermes-engine/Pre-built (0.79.2)
-  - NitroModules (0.26.3):
+  - NitroModules (0.28.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -33,7 +33,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - NitroRealFetch (0.1.1):
+  - NitroRealFetch (0.1.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1717,7 +1717,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - NitroModules (from `../node_modules/react-native-nitro-modules`)
-  - NitroRealFetch (from `../../package`)
+  - NitroRealFetch (from `../../../package`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -1807,7 +1807,7 @@ EXTERNAL SOURCES:
   NitroModules:
     :path: "../node_modules/react-native-nitro-modules"
   NitroRealFetch:
-    :path: "../../package"
+    :path: "../../../package"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTDeprecation:
@@ -1943,8 +1943,8 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 314be5250afa5692b57b4dd1705959e1973a8ebe
-  NitroModules: f36b94e48ff1705fc6b84bc1953f40e2da4196c2
-  NitroRealFetch: 7cb7b88e031fa1be2f5165f306d952e1ddaa74e4
+  NitroModules: bc2dab0712fcd1a91aaafcd3a7a0c060cd1a7294
+  NitroRealFetch: eb39e2e737a959146ebc082b795a6124ce56ef77
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 83ffb90c23ee5cea353bd32008a7bca100908f8c
   RCTRequired: eb7c0aba998009f47a540bec9e9d69a54f68136e
@@ -2012,4 +2012,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a5de45e2350a9515567a6e18ca8ceea718b48523
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2
