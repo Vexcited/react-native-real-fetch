@@ -115,15 +115,15 @@ Then, create a `res/xml/network_security_config.xml` file to define the domain-s
 ```sh
 git clone https://github.com/Vexcited/react-native-real-fetch
 cd react-native-real-fetch/package
-npm install
+bun install
 ```
 
 After making your changes, you can build the package with the following commands.
 
 ```sh
-npm run clean
-npm run codegen
-npm run build
+bun run clean
+bun run codegen
+bun run build
 ```
 
 To see how to run the example app, head over to the [`example`](/example) folder.
