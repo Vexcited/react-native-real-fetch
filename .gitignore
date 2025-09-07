@@ -77,3 +77,4 @@ android/keystores/debug.keystore
 lib/
 
 *.jsbundle
+tsconfig.tsbuildinfo
